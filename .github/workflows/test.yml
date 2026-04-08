@@ -1,4 +1,4 @@
-name: Test Pipeline
+name: Build Docker Image
 
 on:
   push:
@@ -6,15 +6,12 @@ on:
       - main
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Show files
-        run: ls -la
-
-      - name: Echo success
-        run: echo "CI pipeline werkt!"
+      - name: Build Docker image
+        run: docker build -t testacticonnect:latest .
